@@ -14,7 +14,7 @@ export default function Contact() {
 
   const verifyEmailExists = async (email) => {
     try {
-      const apiKey = '737b67984c42128684be4ec3aa1c18bb';
+      const apiKey = import.meta.env.VITE_MAILBOXLAYER_API_KEY;
       // Mailboxlayer API endpoint
       const response = await fetch(`http://apilayer.net/api/check?access_key=${apiKey}&email=${email}&smtp=1&format=1`);
       const data = await response.json();
@@ -101,10 +101,10 @@ export default function Contact() {
       return;
     }
 
-    const SERVICE_ID = 'service_97n2geb';
-    const CUSTOMER_TEMPLATE_ID = 'template_856iawj'; // To you
-    const AUTO_REPLY_TEMPLATE_ID = 'template_ajllzvo'; // To customer
-    const PUBLIC_KEY = 'o3ZLZBDslbOhit3UI';
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const CUSTOMER_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID; // To you
+    const AUTO_REPLY_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID; // To customer
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     // Trigger both templates
     Promise.all([
