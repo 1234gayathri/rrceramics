@@ -15,8 +15,8 @@ export default function Contact() {
   const verifyEmailExists = async (email) => {
     try {
       const apiKey = import.meta.env.VITE_MAILBOXLAYER_API_KEY;
-      // Mailboxlayer API endpoint
-      const response = await fetch(`http://apilayer.net/api/check?access_key=${apiKey}&email=${email}&smtp=1&format=1`);
+      // Mailboxlayer API endpoint (changed to https)
+      const response = await fetch(`https://apilayer.net/api/check?access_key=${apiKey}&email=${email}&smtp=1&format=1`);
       const data = await response.json();
       
       if (data.success === false && data.error) {
@@ -84,21 +84,16 @@ export default function Contact() {
     try {
       const verification = await verifyEmailExists(form.email);
       
-      if (verification.apiError) {
-        setLoading(false);
-        setModalConfig({ show: true, title: 'API Configuration Error', message: `API Error: ${verification.apiError}. Please check your API Key.` });
-        return;
-      }
-
-      if (!verification.isValid) {
+      // Only block if we get a definitive "Invalid" response from the API
+      // If there's a configuration or network error, we proceed anyway to avoid losing the message
+      if (verification.isValid === false && !verification.apiError) {
         setLoading(false);
         setModalConfig({ show: true, title: 'Email Not Found', message: 'Email not found. Please enter the correct email ID.' });
         return;
       }
     } catch (err) {
-      setLoading(false);
-      setModalConfig({ show: true, title: 'Error', message: 'Verification failed unexpectedly.' });
-      return;
+      console.warn("Verification skipped due to error:", err);
+      // Proceeding without verification
     }
 
     const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
