@@ -1,0 +1,148 @@
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about__image-col {
+  position: relative;
+}
+
+.about__img-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: visible;
+}
+
+.about__img-frame::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  right: 16px;
+  bottom: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter: brightness(0.85) contrast(1.05);
+}
+
+.about__img-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  z-index: 2;
+  background: #D4AF37;
+  color: #0f172a;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.35);
+}
+
+.badge-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #0f172a;
+}
+
+.badge-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #1a1000;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.about__text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about__gold-bar {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(to right, #D4AF37, transparent);
+  margin: 4px 0 8px;
+}
+
+.about__para {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.about__para strong {
+  color: #D4AF37;
+  font-weight: 600;
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #D4AF37;
+}
+
+.stat__label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .about__inner {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .about__img {
+    height: 340px;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

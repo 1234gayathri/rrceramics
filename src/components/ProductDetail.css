@@ -1,0 +1,147 @@
+.product-detail {
+  padding-top: 120px;
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.pd-hero {
+  display: flex;
+  min-height: 70vh;
+  padding: 60px;
+  gap: 60px;
+  align-items: center;
+}
+
+.pd-hero__content {
+  flex: 1;
+}
+
+.pd-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.pd-back:hover {
+  transform: translateX(-5px);
+  color: var(--accent-gold);
+}
+
+.pd-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 25px;
+  font-family: 'Playfair Display', serif;
+}
+
+.pd-desc {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.pd-hero__img-container {
+  flex: 1.2;
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px var(--shadow-color);
+}
+
+.pd-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pd-hero__img-container:hover .pd-hero__img {
+  transform: scale(1.05);
+}
+
+.pd-grid {
+  display: flex;
+  gap: 80px;
+}
+
+.pd-info {
+  flex: 1;
+}
+
+.pd-long-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.pd-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.pd-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.pd-feature-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+}
+
+.pd-gallery {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.pd-detail-img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 1024px) {
+  .pd-hero {
+    flex-direction: column;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .pd-hero__img-container {
+    width: 100%;
+  }
+
+  .pd-grid {
+    flex-direction: column;
+  }
+
+  .pd-back {
+    justify-content: center;
+  }
+}

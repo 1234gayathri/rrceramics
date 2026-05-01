@@ -1,0 +1,120 @@
+.whyus {
+  background: var(--bg-gradient);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.whyus__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.whyus__card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 16px;
+  padding: 36px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  animation: cardReveal 0.7s var(--delay, 0s) both ease-out;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.whyus__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, #D4AF37, transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.whyus__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.whyus__card:hover::before {
+  opacity: 1;
+}
+
+.whyus__icon-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.06);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.whyus__card:hover .whyus__icon-ring {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.whyus__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 600;
+}
+
+.whyus__desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.whyus__line {
+  width: 32px;
+  height: 1px;
+  background: rgba(212, 175, 55, 0.3);
+  margin-top: auto;
+  transition: width 0.35s ease, background 0.35s ease;
+}
+
+.whyus__card:hover .whyus__line {
+  width: 56px;
+  background: #D4AF37;
+}
+
+@media (max-width: 900px) {
+  .whyus__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .whyus__grid {
+    grid-template-columns: 1fr;
+  }
+}
