@@ -196,7 +196,7 @@ export default function Contact() {
             <div className="contact__info-list">
               {[
                 { icon: MapPin, text: 'RR Ceramics Shop, Seethammadhara, Visakhapatnam, Andhra Pradesh , 530013' },
-                { icon: Phone, text: '+91 9676486252 , +91 89772 27383' },
+                { icon: Phone, text: '+91 8885766111 , +91 89772 27383' },
                 { icon: Mail, text: 'info.rrceramics@gmail.com' },
                 { icon: Clock, text: 'Mon – Sat: 9:00 AM – 7:00 PM' },
               ].map(({ icon: Icon, text }) => (

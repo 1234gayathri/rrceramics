@@ -48,7 +48,7 @@ export default function Footer() {
           <h4 className="footer__col-title">Contact</h4>
           <ul className="footer__links footer__contact-list">
             <li>RR Ceramics Shop,<br />Seethamadhara, Visakhapatnam</li>
-            <li>+91 9676486252 , +91 89772 27383</li>
+            <li>+91 8885766111 , +91 89772 27383</li>
             <li>info.rrceramics@gmail.com</li>
             <li>Mon – Sat: 9 AM – 7 PM</li>
           </ul>
