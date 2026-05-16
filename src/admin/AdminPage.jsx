@@ -9,6 +9,12 @@ export default function AdminPage() {
     collections, addImageToCollection, removeImageFromCollection 
   } = useProducts();
   
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return sessionStorage.getItem('admin_auth') === 'true';
+  });
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState(false);
+
   const [dest, setDest] = useState('brand'); // 'brand', 'gallery'
   const [brandId, setBrandId] = useState('nitco-cera');
   const [expandedBrand, setExpandedBrand] = useState(null);
@@ -16,7 +22,18 @@ export default function AdminPage() {
   const [formData, setFormData] = useState({
     title: '', brands: '', desc: '', img: '', tag: '', path: '#'
   });
-  
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === '*infoceramicsrestart*') {
+      setIsLoggedIn(true);
+      sessionStorage.setItem('admin_auth', 'true');
+      setLoginError(false);
+    } else {
+      setLoginError(true);
+    }
+  };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -56,8 +73,36 @@ export default function AdminPage() {
   const totalBrandImages = collections.reduce((acc, col) => acc + 1 + col.extraImages.length, 0);
   const totalWebsiteImages = totalBrandImages + galleryImages.length;
 
+  // Login Screen UI
+  if (!isLoggedIn) {
+    return (
+      <div className="admin-login-container">
+        <div className="admin-login-card animate-fade">
+          <div className="login-header">
+            <h2>Admin <span className="gold">Login</span></h2>
+            <p>Please enter your access key to manage RR Ceramics</p>
+          </div>
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label>Authorized Password</label>
+              <input 
+                type="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                placeholder="Enter password..."
+                required 
+              />
+              {loginError && <p className="error-msg">Incorrect password. Please try again.</p>}
+            </div>
+            <button type="submit" className="admin-btn">Unlock Dashboard</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="admin-container">
+    <div className="admin-container animate-fade">
       <div className="admin-header">
         <h1>Admin <span className="gold">Control Center</span></h1>
         <p>Choose where you want to add your new images</p>
