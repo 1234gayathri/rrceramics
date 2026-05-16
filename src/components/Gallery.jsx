@@ -1,17 +1,9 @@
+import { useProducts } from '../context/ProductContext';
 import './Gallery.css';
 
-const galleryImages = [
-  { src: 'https://images.pexels.com/photos/4154987/pexels-photo-4154987.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Luxury bathroom tiles', span: 'tall' },
-  { src: 'https://images.pexels.com/photos/6568682/pexels-photo-6568682.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Premium tile samples', span: '' },
-  { src: 'https://images.pexels.com/photos/6394613/pexels-photo-6394613.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Modern ceramic tile design', span: '' },
-  { src: 'https://images.pexels.com/photos/6580405/pexels-photo-6580405.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Green marble shower tiles', span: 'tall' },
-  { src: 'https://images.pexels.com/photos/36327398/pexels-photo-36327398.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Black marble surface', span: 'wide' },
-  { src: 'https://images.pexels.com/photos/4705933/pexels-photo-4705933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'White marble texture', span: '' },
-  { src: 'https://images.pexels.com/photos/4249687/pexels-photo-4249687.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Tile collection flat lay', span: '' },
-  { src: 'https://images.pexels.com/photos/6934233/pexels-photo-6934233.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', alt: 'Modern mosaic bathroom', span: '' },
-];
-
 export default function Gallery() {
+  const { galleryImages } = useProducts();
+
   return (
     <section className="gallery section" id="gallery">
       <div className="section-header">
@@ -21,8 +13,8 @@ export default function Gallery() {
       </div>
 
       <div className="gallery__grid">
-        {galleryImages.map((img, i) => (
-          <div key={i} className={`gallery__item${img.span ? ` gallery__item--${img.span}` : ''}`}>
+        {galleryImages.map((img) => (
+          <div key={img.id} className={`gallery__item${img.span ? ` gallery__item--${img.span}` : ''}`}>
             <img src={img.src} alt={img.alt} className="gallery__img" />
             <div className="gallery__hover">
               <span className="gallery__hover-icon">

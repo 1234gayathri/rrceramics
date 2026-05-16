@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './ThemeContext';
+import { ProductProvider } from './context/ProductContext';
 import Layout from './components/Layout';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,6 +10,7 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import FeaturedCollections from './components/FeaturedCollections';
 import ProductDetail from './components/ProductDetail';
+import AdminPage from './admin/AdminPage';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './App.css';
@@ -45,14 +47,17 @@ const Home = () => {
 export default function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:productId" element={<ProductDetail />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <ProductProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:productId" element={<ProductDetail />} />
+              <Route path="/admin" element={<AdminPage />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </ProductProvider>
     </ThemeProvider>
   );
 }
